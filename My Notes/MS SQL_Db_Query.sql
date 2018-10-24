@@ -531,3 +531,35 @@ select * from OrderHeader
 	   select id into total_tgt from prod_elect; 
 	end loop
 	
+					 
+					 
+					 
+--Procedure
+					 
+   create PROCEDURE xInsertUpdateDelete  
+    (  
+    @colx VARCHAR(50),  
+    @coly VARCHAR(50),      
+    @StatementType varchar(20) = ''  
+    )  
+    AS  
+    BEGIN  
+    IF @StatementType = 'Insert'  
+    BEGIN  
+    insert into xdata (colx,coly) values( @colx, @coly)  
+    END  
+    IF @StatementType = 'Select'  
+    BEGIN  
+    select * from xdata  
+    END  
+    IF @StatementType = 'Update'  
+    BEGIN  
+    UPDATE xdata SET  
+    colx = @colx,coly = @coly  
+    WHERE colx = @colx  
+    END  
+    else IF @StatementType = 'Delete'  
+    BEGIN  
+    DELETE FROM xdata WHERE colx = @colx
+    END  
+    end  
